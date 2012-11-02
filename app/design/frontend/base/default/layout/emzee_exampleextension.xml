@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+  The layout version number doesn't have any effect.
+  Magento specifies 0.1.0 in every file, so this is kind of a convention.
+-->
+<layout version="0.1.0">
+   <!--
+     The layout handle you want to modify.
+   -->
+   <default>
+       
+   </default> 
+</layout>

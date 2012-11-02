@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Emzee_ExampleExtension>
+            <!-- [true|false] Activate/deactivate the extension -->
+            <active>true</active>
+            <!--
+              [community|local]
+              Define whether the extension can be found in
+              - app/code/community (extension that will be available for / reusable by others) or
+              - app/code/local (only used in this project by yourself).
+            -->
+            <codePool>local</codePool> 
+            <depends>
+                <!--
+                  Define dependencies from other modules like
+                  <Mage_Catalog />
+                -->
+            </depends>
+        </Emzee_ExampleExtension>
+    </modules>
+</config>

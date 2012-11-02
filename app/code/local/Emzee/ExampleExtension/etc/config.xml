@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    
+	<modules>
+		<Emzee_ExampleExtension>
+		    <!-- Use the version number for communicating changes and installer/upgrade scripts. -->
+			<version>0.0.1</version>
+		</Emzee_ExampleExtension>
+	</modules>
+	
+	<!--
+	  Configuration that applies both for the shop frontend and backend area.
+	-->
+	<global>
+	    <!--
+	      Blocks are used for creating content blocks on the website.
+	    -->
+	    <blocks>
+	        <!--
+	          Use a unique handle for your blocks.
+	          Most of the time the blocks are injected into the layout using layout XML files (see config > frontend > layout).
+	          To create blocks directly e.g. in controllers:
+	          $block = Mage::getSingleton('core/layout')->createBlock('emzee_exampleextension/someclass');
+	         -->
+	        <emzee_exampleextension>
+	            <class>Emzee_ExampleExtension_Block</class>
+	        </emzee_exampleextension>
+	    </blocks>
+	    
+	    <!--
+	      Event observers are the most unobtrusive way of modifying Magento core behaviour.
+	      Use them whenever possible.
+	    -->
+	    <events>
+            <!--
+              Name of the event you want to observe.
+              Look out for Mage::dispatchEvent('event_name_here') calls in the code.
+              Alternative: use lists like http://www.nicksays.co.uk/magento_events_cheat_sheet/
+            -->
+            <controller_action_predispatch>
+                <observers>
+                    <!-- Use a unique handle for your observer. -->
+                    <emzee_exampleextension_observer>
+                        <!-- The model containing the observer code. -->
+                        <class>emzee_exampleextension/observer</class>
+                        <!-- Action of the model that should be called. -->
+                        <method>someAction</method>
+                    </emzee_exampleextension_observer>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        
+        <!--
+          Helpers are used for (small) common chunks of functionality and translation both in files and XML config.  
+        -->
+	    <helpers>
+	        <!--
+	          Use a unique handle for your handles.
+	          Usage of default helper (Data.php): Mage::helper('emzee_exampleextension')->doSomething();
+	        --> 
+            <emzee_exampleextension>
+                <class>Emzee_ExampleExtension_Helper</class>
+            </emzee_exampleextension>
+        </helpers>
+        
+        <!--
+          Models handle the business logic of the website.
+        -->
+        <models>
+            <!--
+              Use a unique handle for your models.
+              Usage: Mage::getModel('emzee_exampleextension/someclass')->doSomething();
+            -->
+            <emzee_exampleextension>
+                <class>Emzee_ExampleExtension_Model</class>
+            </emzee_exampleextension>
+        </models>
+        
+        <!--
+          Define a resource for using a database installer/upgrade script.
+          Your scripts will be in data/ (for data modifications) and sql/ (for database structure modifications).
+        -->
+        <resources>
+            <emzee_exampleextension_setup>
+                <setup>
+                    <module>Emzee_ExampleExtension</module>
+                    <!--
+                      If you omit the class tag, the default setup class Mage_Core_Model_Resource_Setup is used.
+                      If you use the class tag you can choose another setup class - e.g. an existing one like
+                      the catalog setup or you create your very own class.
+                      
+                      The class will be the $this object in your installer/upgrade script.
+                    -->
+                    <class />
+                </setup>
+            </emzee_exampleextension_setup>
+        </resources>
+    </global>
+    
+    <!-- Everything declared in frontend only applies to the area visible for customers. -->
+    <frontend>
+        <!--
+          Layout XML files are used to compose a layout by arranging content blocks.
+          For basic block configuration see config > global > blocks.
+        -->
+        <layout>
+            <updates>
+                <!-- 
+                  Use a unique handle for your layout updates.
+                -->
+                <emzee_exampleextension>
+                    <!--
+                      Prefix your XML filenames or put your files in your own directory.
+                      Put your files in app/design/frontend/base/default/layout for maximum flexibility.
+                    -->
+                    <file>emzee_exampleextension.xml</file>
+                </core>
+            </emzee_exampleextension>
+        </layout>
+        
+        <!--
+          Routers translate a URL / request to a specific action that should be executed.
+        -->
+        <routers>
+            <!-- Use a unique handle for your route. -->
+            <emzee_exampleextension>
+                <!-- Use the standard router, i.e. module/controller/action URL structure. -->
+                <use>standard</use>
+                <args>
+                    <!-- Name of your extension. -->
+                    <module>Emzee_ExampleExtension</module>
+                    <!--
+                      The front name is the name of your extension in the URL.
+                      http://yourshop.tld/exampleextension translates to
+                      http://yourshop.tld/exampleextension/index/index
+                      and will call app/code/local/Emzee/ExampleExtension/controller/IndexController.php
+                      with method IndexAction().  
+                    -->
+                    <frontName>exampleextension</frontName>
+                </args>
+            </emzee_exampleextension>
+        </routers>
+        
+        <!--
+          Translations in Magento are done using CSV files.
+          Put your CSV files in app/locale/[locale]/
+        -->
+        <translate>
+            <modules>
+                <!-- 
+                  Use your extension name.
+                -->
+                <Emzee_ExampleExtension>
+                    <files>
+                        <!--
+                          Prefix your CSV filenames or put your files in your own directory.
+                        -->
+                        <default>Emzee_ExampleExtension.csv</default>
+                    </files>
+                </Emzee_ExampleExtension>
+            </modules>
+        </translate>
+        
+        <!--
+          You can add event observers that only are triggered in the frontend.
+          Syntax is the same as in the global node.
+        -->
+        <events />
+    </frontend>
+    <admin>
+        <!--
+          Admin controllers have to be declared in <admin>, not in <adminhtml> (like the rest).
+        -->
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <!--
+                          Magento will search for your controllers in app/code/local/Emzee/ExampleExtension/controllers/Adminhtml/.
+                        -->
+                        <emzee_exampleextension before="Mage_Adminhtml">Emzee_ExampleExtension_Adminhtml</emzee_exampleextension>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <!-- Everything declared in adminhtml only applies to the backend area. -->
+    <adminhtml>
+        <!-- You can define layout updates and translations just like in the frontend. -->
+        <layout />
+        <translate />
+        
+        <!--
+          You can add event observers that only are triggered in the backend.
+          Syntax is the same as in the global node.
+        -->
+        <events />
+    </adminhtml>
+</config>
