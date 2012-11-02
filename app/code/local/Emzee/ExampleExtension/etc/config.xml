@@ -90,8 +90,8 @@
                       the catalog setup or you create your very own class.
                       
                       The class will be the $this object in your installer/upgrade script.
-                    -->
                     <class />
+                    -->
                 </setup>
             </emzee_exampleextension_setup>
         </resources>
@@ -113,9 +113,9 @@
                       Prefix your XML filenames or put your files in your own directory.
                       Put your files in app/design/frontend/base/default/layout for maximum flexibility.
                     -->
-                    <file>emzee_exampleextension.xml</file>
-                </core>
-            </emzee_exampleextension>
+                    <file>emzee_exampleextension/emzee_exampleextension.xml</file>
+                </emzee_exampleextension>
+            </updates>
         </layout>
         
         <!--
@@ -155,7 +155,7 @@
                         <!--
                           Prefix your CSV filenames or put your files in your own directory.
                         -->
-                        <default>Emzee_ExampleExtension.csv</default>
+                        <default>Emzee_ExampleExtension/Emzee_ExampleExtension.csv</default>
                     </files>
                 </Emzee_ExampleExtension>
             </modules>
@@ -177,6 +177,8 @@
                     <modules>
                         <!--
                           Magento will search for your controllers in app/code/local/Emzee/ExampleExtension/controllers/Adminhtml/.
+                          
+                          You also can use after="" if you don't plan to override other modules.
                         -->
                         <emzee_exampleextension before="Mage_Adminhtml">Emzee_ExampleExtension_Adminhtml</emzee_exampleextension>
                     </modules>

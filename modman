@@ -1,0 +1,4 @@
+app/code/local/Emzee/ExampleExtension app/code/local/Emzee/ExampleExtension
+app/design/frontend/base/default/layout/emzee_exampleextension app/design/frontend/base/default/layout/emzee_exampleextension
+app/etc/modules/Emzee_ExampleExtension.xml app/etc/modules/Emzee_ExampleExtension.xml
+app/locale/* app/locale
